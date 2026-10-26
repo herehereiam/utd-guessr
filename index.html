@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172554">
+  <title>UTDGuessr</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand"><span class="brand-mark">📍</span><span>UTDGuessr</span></a>
+  </header>
+
+  <main class="page-wrap">
+    <section class="intro-row">
+      <div>
+        <h1>Where on campus is this?</h1>
+      </div>
+      <label class="archive-control" for="archive-select"><select id="archive-select" aria-label="Choose a daily puzzle"><option value="">Loading archive…</option></select></label>
+    </section>
+
+    <div id="notice" class="notice" role="status" hidden></div>
+
+    <section class="game-grid" id="game-content" hidden>
+      <div class="left-column">
+        <section class="panel how-panel">
+          <details>
+            <summary><h2 style="display: inline">How to play</h2></summary>
+            <ol class="how-panel-details"><li>You start with a cropped image.</li><li>Click "Reveal more" up to three times to see more of the image.</li><li>Each reveal subtracts 1,000 points from your maximum score, which starts at 5,000.</li><li>Click the map to guess where on campus the crosshair in the image is. You only get one guess.</li><li>Guesses within 75 feet of the true location earn maximum points. Guesses that are off by more than 600 feet earn less than half of the maximum points.</li></ol>
+          </details>
+        </section>
+        <section class="panel image-panel">
+          <div class="panel-heading"><div><h2 id="puzzle-heading">Photo clue</h2></div></div>
+          <div id="post-guess-stages" class="post-guess-stages" hidden>
+            <span class="stage-label">Image stage:</span>
+            <div class="stage-buttons" role="group" aria-label="View image stage">
+              <button type="button" data-stage="1" aria-pressed="true">1</button>
+              <button type="button" data-stage="2" aria-pressed="false">2</button>
+              <button type="button" data-stage="3" aria-pressed="false">3</button>
+              <button type="button" data-stage="4" aria-pressed="false">4</button>
+            </div>
+          </div>
+          <div class="image-frame"><canvas id="puzzle-canvas" aria-label="Puzzle image"></canvas></div>
+          <div class="stage-controls" id="pre-guess-controls">
+            <button id="reveal-button" class="button button-secondary" type="button">Reveal more <span>−1,000 pts</span></button>
+            <p class="reveal-count"><strong id="points-possible">5,000</strong> / 5,000 points possible</p>
+          </div>
+        </section>
+      </div>
+
+      <div class="right-column">
+        <section class="panel map-panel">
+          <div class="panel-heading"><div><h2>Guess the location</h2></div></div>
+          <p class="map-instructions" id="map-instructions">Drop a pin where you think the crosshair in the image is. You only get one guess.</p>
+          <div id="map" aria-label="Interactive map centered on the University of Texas at Dallas"></div>
+          <div class="map-footer"></div>
+          <button id="submit-guess-button" class="button button-primary full-width" type="button" disabled>Submit guess</button>
+        </section>
+        <section id="result-panel" class="panel result-panel" hidden>
+          <div class="panel-heading"><div><h2>Your results</h2></div></div>
+          <div class="score-row"><div><span class="muted-label">SCORE</span><div class="score-value" id="score-value">0</div><span id="score-out-of"> / 5,000</span></div><div><span class="muted-label">DISTANCE</span><div class="result-stat" id="distance-value">—</div></div><div><span class="muted-label">REVEALS</span><div class="result-stat" id="result-reveals">0 / 3</div></div></div>
+          <p id="result-message" class="result-message"></p>
+          <button id="copy-button" class="button button-primary full-width" type="button">Copy results</button>
+          <p id="copy-feedback" class="copy-feedback" aria-live="polite"></p>
+        </section>
+      </div>
+    </section>
+    <footer class="site-footer"><span>Map interface made using Leaflet. Map tiles © OpenStreetMap contributors</span></footer>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
