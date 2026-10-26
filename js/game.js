@@ -692,7 +692,8 @@
       `UTDGuessr 📍 ${prettyDate(currentDate)}\n` +
       `Score: ${result.score.toLocaleString('en-US')} / ${MAX_SCORE.toLocaleString('en-US')} ${scoreEmoji}\n` +
       `Distance: ${formatDistance(result.distanceMeters)}\n` +
-      `Reveals: ${revealsEmoji}`;
+      `Reveals: ${revealsEmoji}\n` +
+      `https://herehereiam.github.io/utd-guessr/`;
 
     try {
       await navigator.clipboard.writeText(shareText);
