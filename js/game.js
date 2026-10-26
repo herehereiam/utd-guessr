@@ -346,7 +346,7 @@
     // Stage 1 is always available; each reveal unlocks one more stage.
     ui.postGuess.querySelectorAll('[data-stage]').forEach(button => {
       const buttonStage = Number(button.dataset.stage);
-      const inaccessible = buttonStage > reveals + 1;
+      const inaccessible = !result && buttonStage > reveals + 1;
 
       button.disabled = inaccessible;
       button.classList.toggle('stage-inaccessible', inaccessible);
@@ -441,7 +441,7 @@
     if (!guess || result) return;
 
     result = calculateResult();
-    stage = Math.max(1, Math.min(4, stage));
+    stage = 4;
 
     saveState();
 
@@ -657,7 +657,7 @@
     button.addEventListener('click', () => {
       const selectedStage = Number(button.dataset.stage);
 
-      if (selectedStage > reveals + 1) return;
+      if (!result && selectedStage > reveals + 1) return;
 
       stage = selectedStage;
       saveState();
