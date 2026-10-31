@@ -411,7 +411,7 @@
   }
 
   function formatDistance(meters) {
-    if (meters < 161) {
+    if (meters < 1609.34) {
       return `${Math.round(meters * 3.28084)} ft`;
     }
 
