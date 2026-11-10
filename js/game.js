@@ -614,7 +614,7 @@
     ui.archive.innerHTML = '';
 
     for (const date of dates) {
-      //if (date > today) { continue; }
+      if (date > today) { continue; }
 
       const option = document.createElement('option');
 
