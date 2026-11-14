@@ -87,7 +87,7 @@
     const response = await fetch(url, { cache: 'no-cache' });
 
     if (!response.ok) {
-      throw new Error(`Could not load ${url} (${response.status}).`);
+      throw new Error(`Could not load the puzzle's json file. (${response.status}).`);
     }
 
     return response.json();
